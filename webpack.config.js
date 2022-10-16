@@ -3,9 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: path.join(__dirname, "src", "index.tsx"),
+  entry: path.join(__dirname, 'src', 'index.tsx'),
   output: {
-    path:path.resolve(__dirname, "dist"),
+    path:path.resolve(__dirname, 'dist'),
   },
   devServer: {
     port: 3000,
@@ -16,7 +16,7 @@ module.exports = {
         test: /\.?js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react']
           }
@@ -24,7 +24,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|jp(e*)g|gif)$/,
@@ -42,11 +42,19 @@ module.exports = {
         },
         use: 'ts-loader',
       },
+      {
+        test: /\.less$/,
+        use: [
+            { loader: 'style-loader' },
+            { loader: 'css-loader' },
+            { loader: 'less-loader' }
+        ]
+      }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "public", "index.html"),
+      template: path.join(__dirname, 'public', 'index.html'),
     }),
   ],
 }
